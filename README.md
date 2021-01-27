@@ -1,8 +1,8 @@
 # Trending Youtube Videos
 
-This script is part of my research project called "What Topics Drives Youtube MX?". You can check the whole project [here]("https://gmarr.com/").
+This script is part of my research project called "What Topics Drives Youtube MX?". You can check the whole project [**here**](https://gmarr.com/).
 
-The main purpose of this code is to get the most relevant information from all the videos that are appearing on the [Trending]("https://www.youtube.com/feed/trending") page of Youtube, on any particular region, and export the results to a CSV file.
+The main purpose of this code is to get the most relevant information from all the videos that are appearing on the [**Trending**](https://www.youtube.com/feed/trending) page of Youtube, on any particular region, and export the results to a CSV file.
 
 Here's an example of the final result you can get after running the script:
 
@@ -24,13 +24,13 @@ To follow the code in this tutorial I would recommend to have some knowledge of 
     * `for` loops
     * functions
     * pip. 
-        * [Here]("https://realpython.com/what-is-pip/") you can find a really good article that expalins what is pip.
+        * [Here](https://realpython.com/what-is-pip/) you can find a really good article that expalins what is pip.
     * pandas. 
-        * [This]("https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html") is a gentle introduction to the pandas library.
+        * [This](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html) is a gentle introduction to the pandas library.
 * JSON
     * The general structure of a JSON file
 * API's
-    * Specifically, the tutorial is going to make more sense if you know what is an API Key. To learn more about API's I recommend to watch this [video]("https://www.youtube.com/watch?v=GZvSYJDk-us&t=4641s"). The video shows the inner workings of the [Trello API]("https://developer.atlassian.com/cloud/trello/rest/") however, the concepts that are shown can be applied to any API. This is my "go-to" reference guide when I'm stucked.
+    * Specifically, the tutorial is going to make more sense if you know what is an API Key. To learn more about API's I recommend to watch this [video](https://www.youtube.com/watch?v=GZvSYJDk-us&t=4641s). The video shows the inner workings of the [Trello API](https://developer.atlassian.com/cloud/trello/rest/) however, the concepts that are shown can be applied to any API. This is my "go-to" reference guide when I'm stucked.
 
 If you do not know how any of this concepts work I added resources troughout the tutorial that can be revised
 
@@ -38,19 +38,19 @@ If you do not know how any of this concepts work I added resources troughout the
 In addition to the concepts mentioned above, before you start the tutorial be sure to have:
 
 * A Youtube API Key
-    * In order to retrieve the data from Youtube we're going to use the [Youtube API]("https://developers.google.com/youtube/v3"). All the API's from Google properties require a Google Account and autorization credentials.
-    * To learn how to setup a Google Account and get this credentials you can follow this [tutorial]("https://developers.google.com/youtube/registering_an_application").
-    * Once you have your credentials, you need to request an API Key. You can follow [this instructions]("https://cloud.google.com/resource-manager/docs/creating-managing-projects?visit_id=637472330160631271-1024614839&rd=1") to get your API Key.
-    * If you want additional information about the API setup, Youtube offers a nice introduction [here]("https://developers.google.com/youtube/v3/getting-started).
+    * In order to retrieve the data from Youtube we're going to use the [Youtube API](https://developers.google.com/youtube/v3). All the API's from Google properties require a Google Account and autorization credentials.
+    * To learn how to setup a Google Account and get this credentials you can follow this [tutorial](https://developers.google.com/youtube/registering_an_application).
+    * Once you have your credentials, you need to request an API Key. You can follow [this instructions](https://cloud.google.com/resource-manager/docs/creating-managing-projects?visit_id=637472330160631271-1024614839&rd=1) to get your API Key.
+    * If you want additional information about the API setup, Youtube offers a nice introduction [here](https://developers.google.com/youtube/v3/getting-started).
 * A Code Editor
-    * I use VS Code. You can download it [here]("https://code.visualstudio.com/").
+    * I use VS Code. You can download it [here](https://code.visualstudio.com/).
 * Python
-    * If you use a Mac you already have Python installed. If you use a Windows PC or Linux, you can download Python [here]("").
-    * The `pandas` library. You can download it from [here]("https://pandas.pydata.org/").
+    * If you use a Mac you already have Python installed. If you use a Windows PC or Linux, you can download Python [here](https://www.python.org/downloads/).
+    * The `pandas` library. You can download it from [here](https://pandas.pydata.org/).
 
 ### 3. The Code
 
-1. Download the [google python client]("https://github.com/googleapis/google-api-python-client") via pip. 
+1. Download the [google python client](https://github.com/googleapis/google-api-python-client) via pip. 
 
 ```python
 pip install google-api-python-client
@@ -60,7 +60,7 @@ pip install google-api-python-client
 ```python
 from googleapiclient.discovery import build
 ```
-3. Get your API Key from the [Google Developer Console]("https://console.developers.google.com/") and copy it. 
+3. Get your API Key from the [Google Developer Console](https://console.developers.google.com/) and copy it. 
 4. Create a variable called `api_key` and paste the API Key that you copied from the Google Developer Console. Then create a variable called `youtube` and assign it the `build()` function with the parameters
  `youtube`, `v3` and `developerKey = api_key`
 
@@ -70,10 +70,10 @@ api_key= "<Paste your API KEY here>"
 youtube = build("youtube","v3", developerKey=api_key)
 ```
 
-* [Here]("https://googleapis.github.io/google-api-python-client/docs/epy/googleapiclient.discovery-module.html#build") you can learn all the arguments that can be used in the `build()` function.
-* I would also recommend to check all the different methods that the youtube API can use. You can find them [here]("https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.html").
+* [Here](https://googleapis.github.io/google-api-python-client/docs/epy/googleapiclient.discovery-module.html#build) you can learn all the arguments that can be used in the `build()` function.
+* I would also recommend to check all the different methods that the youtube API can use. You can find them [here](https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.html).
 
-5. We’re going to use the `videos()` method inside the `build()` function that we created. [Here]("https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.videos.html") you can find all the methods that can be used on `video()`. For this tutproal we’re going to use the `list()` method and [here]("https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.videos.html#list") are all the parameters that can be used inside `list()`.
+5. We’re going to use the `videos()` method inside the `build()` function that we created. [Here](https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.videos.html) you can find all the methods that can be used on `video()`. For this tutproal we’re going to use the `list()` method and [here](https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.videos.html#list) are all the parameters that can be used inside `list()`.
 
 6. Once the parameters are added into the “list()” method the final step is to add the “execute()” method so everything can be executed.
 
