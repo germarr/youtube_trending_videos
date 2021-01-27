@@ -1,8 +1,8 @@
 # Trending Youtube Videos
 
-This script is part of my research project called "What Topics Drives Youtube MX?". You can check the whole project [**here**]("https://gmarr.com/").
+This script is part of my research project called "What Topics Drives Youtube MX?". You can check the whole project [here]("https://gmarr.com/").
 
-The main purpose of this code is to get the most relevant information from all the videos that are appearing on the [**Trending**]("https://www.youtube.com/feed/trending") page of Youtube, on any particular region, and export the results to a CSV file.
+The main purpose of this code is to get the most relevant information from all the videos that are appearing on the [Trending]("https://www.youtube.com/feed/trending") page of Youtube, on any particular region, and export the results to a CSV file.
 
 Here's an example of the final result you can get after running the script:
 
