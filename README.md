@@ -12,7 +12,7 @@ Here's an example of the final result you can get after running the script:
 
 <br>
 
-## <ins>The File</ins>
+## The File
 ---
 The `get_video_list.py` file makes a call to the Youtube API, gets the information of the first 50 videos on the "Trending" page and export that information into a CSV file.
 
