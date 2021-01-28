@@ -14,33 +14,34 @@ Here's an example of the final result you can get after running the script:
 
 ## The File
 ---
-The `get_video_list.py` file makes a call to the Youtube API, gets the information of the first 50 videos on the "Trending" page and export that information into a CSV file.
+The `get_video_list.py` file makes a call to the Youtube API, gets the information of the first 50 videos on the "Trending" page, and export that information into a CSV file.
 
 ## Tutorial
 ---
 ### 1. General Concepts
-To follow the code in this tutorial I would recommend to have some knowledge of the next concepts:
+To follow the code in this tutorial I would recommend having some knowledge of the next concepts:
 * Python
     * `for` loops
     * functions
     * pip. 
-        * [Here](https://realpython.com/what-is-pip/) you can find a really good article that expalins what is pip.
+        * [Here](https://realpython.com/what-is-pip/) you can find a really good article that explains what is pip.
     * pandas. 
         * [This](https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html) is a gentle introduction to the pandas library.
 * JSON
     * The general structure of a JSON file
 * API's
-    * Specifically, the tutorial is going to make more sense if you know what is an API Key. To learn more about API's I recommend to watch this [video](https://www.youtube.com/watch?v=GZvSYJDk-us&t=4641s). The video shows the inner workings of the [Trello API](https://developer.atlassian.com/cloud/trello/rest/) however, the concepts that are shown can be applied to any API. This is my "go-to" reference guide when I'm stucked.
+    * Specifically, the tutorial is going to make more sense if you know what is an API Key. To learn more about API's I recommend watching this [video](https://www.youtube.com/watch?v=GZvSYJDk-us&t=4641s). The video shows the inner workings of the [Trello API](https://developer.atlassian.com/cloud/trello/rest/) however, the concepts that are shown can be applied to any API. This is my "go-to" reference guide when I'm stuck.
 
-If you do not know how any of this concepts work I added resources troughout the tutorial that can be revised
 
-### 2. The Set Up
+If you do not know how any of these concepts work I added resources throughout the tutorial that can be revised
+
+### 2. The Set-Up
 In addition to the concepts mentioned above, before you start the tutorial be sure to have:
 
 * A Youtube API Key
-    * In order to retrieve the data from Youtube we're going to use the [Youtube API](https://developers.google.com/youtube/v3). All the API's from Google properties require a Google Account and autorization credentials.
-    * To learn how to setup a Google Account and get this credentials you can follow this [tutorial](https://developers.google.com/youtube/registering_an_application).
-    * Once you have your credentials, you need to request an API Key. You can follow [this instructions](https://cloud.google.com/resource-manager/docs/creating-managing-projects?visit_id=637472330160631271-1024614839&rd=1) to get your API Key.
+    * In order to retrieve the data from Youtube we're going to use the [Youtube API](https://developers.google.com/youtube/v3). All the APIs from Google properties require a Google Account and authorization credentials.
+    * To learn how to set up a Google Account and get these credentials you can follow this [tutorial](https://developers.google.com/youtube/registering_an_application).
+    * Once you have your credentials, you need to request an API Key. You can follow [this instruction](https://cloud.google.com/resource-manager/docs/creating-managing-projects?visit_id=637472330160631271-1024614839&rd=1) to get your API Key.
     * If you want additional information about the API setup, Youtube offers a nice introduction [here](https://developers.google.com/youtube/v3/getting-started).
 * A Code Editor
     * I use VS Code. You can download it [here](https://code.visualstudio.com/).
@@ -71,9 +72,9 @@ youtube = build("youtube","v3", developerKey=api_key)
 ```
 
 * [Here](https://googleapis.github.io/google-api-python-client/docs/epy/googleapiclient.discovery-module.html#build) you can learn all the arguments that can be used in the `build()` function.
-* I would also recommend to check all the different methods that the youtube API can use. You can find them [here](https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.html).
+* I would also recommend checking all the different methods that the youtube API can use. You can find them [here](https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.html).
 
-5. We’re going to use the `videos()` method inside the `build()` function that we created. [Here](https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.videos.html) you can find all the methods that can be used on `video()`. For this tutproal we’re going to use the `list()` method and [here](https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.videos.html#list) are all the parameters that can be used inside `list()`.
+5. We’re going to use the `videos()` method inside the `build()` function that we created. [Here](https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.videos.html) you can find all the methods that can be used on `video()`. For this tutorial we’re going to use the `list()` method and [here](https://googleapis.github.io/google-api-python-client/docs/dyn/youtube_v3.videos.html#list) are all the parameters that can be used inside `list()`.
 
 6. Once the parameters are added into the “list()” method the final step is to add the “execute()” method so everything can be executed.
 
@@ -94,7 +95,7 @@ chart_mx= youtube.videos().list(
     # In my case I choose "MX" which represents "Mexico". 
 
     maxResults=50
-    # The maxResults parameter specifies how many results you want to be      returned in the call. 
+    # The maxResults parameter specifies how many results you want to be returned in the call. 
     # I choose 50 because that's the max number you can get per call. 
 
     ).execute()
@@ -145,7 +146,7 @@ chart_mx= youtube.videos().list(
 
 8.  To organize this file into a dataframe first create an empty list and assigned it to a variable called `top_videos`. This variable is going to store the dataframe. Secondly, write a `for` loop to append all the JSON items that were stored in the `chart_mx` variable, into my empty list. 
 
-9. For this example I picked 13 different variables from the videos. All the information from these variables comes from the API call, however I added additional information to some of the data points in order to make them more usable for my final goal. Specifically I created a variable called `trending_date` which records the time the video was at the “Trending” page and “link” which creates a direct link to the video. Think about the data you would like to retrieve and only add those parameters into the API call.
+9. For this example I picked 13 different variables from the videos. All the information from these variables comes from the API call, however, I added additional information to some of the data points in order to make them more usable for my final goal. Specifically, I created a variable called `trending_date` which records the time the video was at the “Trending” page and “link” which creates a direct link to the video. Think about the data you would like to retrieve and only add those parameters into the API call.
 
 ```python
 from datetime import datetime,date
@@ -254,9 +255,10 @@ pd.DataFrame.from_dict(top_videos).to_csv(f"{title}.csv")
 
 ```
 
-## Final Toughts
+## Final Thoughts
 --- 
-You can use this code as a starting point to get the information that is relevant to your particular needs. I recommend to check all the documentation of the Youtube API, this is the quickest way to learn about the data that can (and can`t) be requested.
+You can use this code as a starting point to get the information that is relevant to your particular needs. I recommend checking all the documentation of the Youtube API, this is the quickest way to learn about the data that can (and can`t) be requested.
+
 
 
 
